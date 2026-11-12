@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE | Premium Fashion Store</title>
+<meta name="description" content="متجر STYLE - أحدث صيحات الموضة بأفضل الأسعار">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ==================== RESET & VARIABLES ==================== */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f; --bg-secondary:#12121a; --bg-card:#1a1a26; --bg-glass:rgba(255,255,255,.03);
+  --text:#fff; --text-muted:#a0a0b0;
+  --border:rgba(255,255,255,.08); --border-hover:rgba(139,92,246,.4);
+  --primary:#8b5cf6; --primary-dark:#6d28d9; --primary-light:#a78bfa;
+  --accent:#ec4899; --accent-2:#06b6d4;
+  --success:#10b981; --danger:#ef4444; --warning:#f59e0b;
+  --grad-main:linear-gradient(135deg,#8b5cf6 0%,#ec4899 100%);
+  --shadow-md:0 8px 24px rgba(0,0,0,.5); --shadow-lg:0 20px 60px rgba(0,0,0,.6);
+  --shadow-glow:0 0 40px rgba(139,92,246,.4);
+  --radius:16px; --radius-sm:10px; --radius-lg:24px;
+  --transition:cubic-bezier(.4,0,.2,1);
+}
+[data-theme="light"]{
+  --bg:#f5f5f8; --bg-secondary:#fff; --bg-card:#fff; --bg-glass:rgba(0,0,0,.02);
+  --text:#0a0a0f; --text-muted:#6b6b7b; --border:rgba(0,0,0,.08);
+  --shadow-md:0 8px 24px rgba(139,92,246,.15); --shadow-lg:0 20px 60px rgba(139,92,246,.2);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s;min-height:100vh}
+body[dir="ltr"]{font-family:'Inter','Cairo',sans-serif}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit}
+.container{max-width:1300px;margin:0 auto;padding:0 24px}
+
+/* ==================== LOADER ==================== */
+.loader-screen{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+.loader-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-size:48px;font-weight:900;letter-spacing:6px;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:pulseGlow 2s ease-in-out infinite;margin-bottom:30px}
+@keyframes pulseGlow{0%,100%{filter:drop-shadow(0 0 20px rgba(139,92,246,.5))}50%{filter:drop-shadow(0 0 40px rgba(236,72,153,.8))}}
+.loader-bar{width:200px;height:3px;background:var(--border);border-radius:3px;overflow:hidden;position:relative}
+.loader-bar::after{content:'';position:absolute;inset:0;background:var(--grad-main);border-radius:3px;animation:loadingBar 1.5s ease-in-out infinite}
+@keyframes loadingBar{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* ==================== CURSOR ==================== */
+.cursor-dot,.cursor-ring{position:fixed;pointer-events:none;z-index:9999;border-radius:50%}
+.cursor-dot{width:6px;height:6px;background:var(--primary);transform:translate(-50%,-50%)}
+.cursor-ring{width:40px;height:40px;border:2px solid rgba(139,92,246,.5);transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s}
+.cursor-ring.hover{width:60px;height:60px;background:rgba(139,92,246,.1);border-color:var(--accent)}
+@media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
+
+/* ==================== PARTICLES ==================== */
+.particles-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.particle{position:absolute;width:4px;height:4px;background:var(--primary);border-radius:50%;opacity:.3;animation:floatParticle linear infinite}
+@keyframes floatParticle{0%{transform:translate(0,100vh) scale(0);opacity:0}10%{opacity:.3}90%{opacity:.3}100%{transform:translate(var(--drift,100px),-100vh) scale(1);opacity:0}}
+
+/* ==================== TICKER ==================== */
+.ticker{background:var(--grad-main);color:#fff;padding:10px 0;overflow:hidden;font-size:13px;font-weight:600}
+.ticker-track{display:flex;gap:60px;white-space:nowrap;animation:tickerScroll 30s linear infinite}
+.ticker-track span{display:inline-flex;align-items:center;gap:8px}
+@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ==================== HEADER ==================== */
+header{position:sticky;top:0;z-index:1000;background:rgba(10,10,15,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+[data-theme="light"] header{background:rgba(255,255,255,.8)}
+header.scrolled{background:rgba(10,10,15,.95);box-shadow:0 4px 20px rgba(0,0,0,.5)}
+[data-theme="light"] header.scrolled{background:rgba(255,255,255,.98)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:24px}
+.logo{font-size:28px;font-weight:900;letter-spacing:4px;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:transform .3s;cursor:pointer}
+.logo:hover{transform:scale(1.05)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-weight:600;font-size:15px;position:relative;padding:6px 0;transition:color .3s;cursor:pointer}
+.nav-links a::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--grad-main);border-radius:3px;transition:width .3s}
+.nav-links a:hover{color:var(--primary-light)}
+.nav-links a:hover::before{width:100%}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg-glass);border:1px solid var(--border);font-size:18px;position:relative;transition:all .3s;color:var(--text)}
+.icon-btn:hover{background:var(--primary);border-color:var(--primary);color:#fff;transform:translateY(-2px) scale(1.05);box-shadow:var(--shadow-glow)}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px;animation:bounce .5s}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+
+/* ==================== LANG ==================== */
+.lang-selector{position:relative}
+.lang-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:50px;background:var(--bg-glass);border:1px solid var(--border);font-size:13px;font-weight:600;transition:all .3s;cursor:pointer;color:var(--text)}
+.lang-btn:hover{border-color:var(--primary);background:rgba(139,92,246,.1)}
+.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;min-width:180px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .3s;z-index:100}
+body[dir="ltr"] .lang-dropdown{right:auto;left:0}
+.lang-dropdown.open{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-option{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s;width:100%;text-align:start;color:var(--text)}
+.lang-option:hover{background:rgba(139,92,246,.15);color:var(--primary-light)}
+.lang-option.active{background:var(--grad-main);color:#fff}
+.lang-flag{font-size:18px}
+
+/* ==================== THEME ==================== */
+.theme-toggle{width:44px;height:44px;border-radius:50%;background:var(--bg-glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s;cursor:pointer;color:var(--text)}
+.theme-toggle:hover{background:var(--primary);color:#fff;transform:rotate(180deg)}
+.menu-toggle{display:none;font-size:24px;width:44px;height:44px;align-items:center;justify-content:center;border-radius:50%;background:var(--bg-glass);border:1px solid var(--border)}
+
+/* ==================== HERO ==================== */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;padding:60px 0}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(139,92,246,.3) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(236,72,153,.25) 0%,transparent 50%);z-index:0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-content{max-width:600px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);color:var(--primary-light);font-size:13px;font-weight:700;margin-bottom:24px;animation:fadeSlideUp .8s ease both}
+.hero-badge::before{content:'';width:8px;height:8px;background:var(--primary);border-radius:50%;box-shadow:0 0 10px var(--primary);animation:pulseDot 2s ease infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero h1{font-size:clamp(40px,6vw,76px);font-weight:900;line-height:1.1;margin-bottom:24px;animation:fadeSlideUp .8s .1s ease both}
+.gradient-text{background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:var(--text-muted);margin-bottom:36px;max-width:480px;animation:fadeSlideUp .8s .2s ease both}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;animation:fadeSlideUp .8s .3s ease both}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ==================== BUTTONS ==================== */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:50px;font-weight:700;font-size:15px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .6s}
+.btn:hover::after{transform:translateX(100%)}
+.btn-primary{background:var(--grad-main);color:#fff;box-shadow:0 8px 24px rgba(139,92,246,.4)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(139,92,246,.6)}
+.btn-outline{background:transparent;color:var(--text);border:2px solid var(--border)}
+.btn-outline:hover{border-color:var(--primary);background:rgba(139,92,246,.1);transform:translateY(-3px)}
+.btn-block{width:100%;justify-content:center}
+
+/* ==================== HERO VISUAL ==================== */
+.hero-visual{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;animation:fadeSlideUp 1s .4s ease both}
+.hero-blob{position:absolute;width:90%;height:90%;background:var(--grad-main);border-radius:50%;filter:blur(80px);opacity:.4;animation:blobFloat 8s ease-in-out infinite}
+@keyframes blobFloat{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.1) translate(20px,-20px)}}
+.hero-image{position:relative;width:85%;border-radius:30px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:rotate(-5deg);transition:transform .6s}
+.hero-image:hover{transform:rotate(0) scale(1.02)}
+.hero-image img{width:100%;height:100%;object-fit:cover}
+.floating-card{position:absolute;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-lg);animation:floatCard 4s ease-in-out infinite;backdrop-filter:blur(10px)}
+.floating-card.card-1{top:10%;left:-10%}
+.floating-card.card-2{bottom:15%;right:-5%;animation-delay:1s}
+.floating-card .fc-icon{width:40px;height:40px;background:var(--grad-main);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.floating-card .fc-info{font-size:12px}
+.floating-card .fc-info strong{display:block;font-size:14px}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+
+/* ==================== FEATURES ==================== */
+.features-bar{padding:50px 0;background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.feature-item{display:flex;align-items:center;gap:14px;padding:20px;border-radius:var(--radius);background:var(--bg-glass);border:1px solid var(--border);transition:all .3s}
+.feature-item:hover{border-color:var(--primary);transform:translateY(-4px);background:rgba(139,92,246,.08)}
+.feature-icon{width:52px;height:52px;border-radius:14px;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 8px 20px rgba(139,92,246,.3)}
+.feature-item h4{font-size:15px;font-weight:700;margin-bottom:2px}
+.feature-item p{font-size:13px;color:var(--text-muted)}
+
+/* ==================== SECTION ==================== */
+.section{padding:90px 0;position:relative}
+.section-title{text-align:center;margin-bottom:55px}
+.section-title .eyebrow{display:inline-block;color:var(--primary-light);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px}
+.section-title h2{font-size:clamp(30px,4.5vw,48px);font-weight:900;margin-bottom:14px}
+.section-title p{color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto}
+
+/* ==================== FILTER ==================== */
+.filter-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius)}
+.filter-search{flex:1;min-width:220px;position:relative}
+.filter-search input{width:100%;padding:14px 48px 14px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;outline:none;transition:all .3s}
+body[dir="ltr"] .filter-search input{padding:14px 20px 14px 48px}
+.filter-search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(139,92,246,.15)}
+.filter-search .search-icon{position:absolute;top:50%;transform:translateY(-50%);font-size:18px;color:var(--text-muted);right:18px}
+body[dir="ltr"] .filter-search .search-icon{right:auto;left:18px}
+.filter-bar select{padding:14px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;outline:none;cursor:pointer;min-width:160px;transition:all .3s}
+.filter-bar select:focus{border-color:var(--primary)}
+
+/* ==================== PRODUCTS ==================== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px}
+.product-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .4s;position:relative;animation:fadeSlideUp .6s ease both}
+.product-card:hover{transform:translateY(-10px);border-color:var(--border-hover);box-shadow:0 25px 50px rgba(139,92,246,.25)}
+.product-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#1a1a26,#0a0a0f)}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.product-card:hover .product-img img{transform:scale(1.12)}
+.product-badges{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.product-badge{padding:5px 12px;border-radius:50px;font-size:11px;font-weight:700;color:#fff;text-align:center;backdrop-filter:blur(10px)}
+.product-badge.sale{background:linear-gradient(135deg,#ec4899,#f43f5e)}
+.product-badge.new{background:linear-gradient(135deg,#10b981,#059669)}
+.product-badge.hot{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.product-actions{position:absolute;top:14px;left:14px;display:flex;flex-direction:column;gap:8px;z-index:2;opacity:0;transform:translateX(-20px);transition:all .4s}
+.product-card:hover .product-actions{opacity:1;transform:translateX(0)}
+.pa-btn{width:40px;height:40px;border-radius:50%;background:rgba(10,10,15,.85);backdrop-filter:blur(10px);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s;border:1px solid rgba(255,255,255,.1)}
+.pa-btn:hover{background:var(--primary);transform:scale(1.15)}
+.pa-btn.active{background:var(--accent)}
+.product-info{padding:20px}
+.product-cat{font-size:11px;color:var(--primary-light);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px}
+.product-info h3{font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.4}
+.product-rating{display:flex;align-items:center;gap:4px;margin-bottom:12px;font-size:13px}
+.product-rating .stars{color:#f59e0b}
+.product-rating .count{color:var(--text-muted);font-size:12px}
+.product-price{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.price-current{font-size:22px;font-weight:900;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.price-old{font-size:14px;color:var(--text-muted);text-decoration:line-through}
+.add-cart-btn{width:100%;padding:13px;background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-weight:700;font-size:14px;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.add-cart-btn:hover{background:var(--grad-main);border-color:transparent;color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(139,92,246,.4)}
+.add-cart-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ==================== FLASH SALE ==================== */
+.flash-sale{background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 0;position:relative;overflow:hidden}
+.flash-sale::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(236,72,153,.15),transparent 50%),radial-gradient(circle at 80% 50%,rgba(139,92,246,.15),transparent 50%)}
+.flash-sale-content{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.flash-sale h2{font-size:clamp(30px,4vw,50px);font-weight:900;margin-bottom:16px}
+.flash-sale p{color:var(--text-muted);margin-bottom:24px;font-size:16px}
+.countdown{display:flex;gap:12px;margin-top:24px}
+.countdown-item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;text-align:center;min-width:80px;position:relative;overflow:hidden}
+.countdown-item::before{content:'';position:absolute;inset:0;background:var(--grad-main);opacity:.1}
+.countdown-num{font-size:32px;font-weight:900;position:relative;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.countdown-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;position:relative}
+.flash-image{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);transform:rotate(3deg);transition:transform .5s}
+.flash-image:hover{transform:rotate(0) scale(1.02)}
+.flash-image img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+/* ==================== STATS ==================== */
+.stats{padding:70px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.stat-card{text-align:center;padding:30px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:all .4s}
+.stat-card:hover{border-color:var(--primary);transform:translateY(-5px);box-shadow:var(--shadow-glow)}
+.stat-num{font-size:48px;font-weight:900;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.stat-label{font-size:14px;color:var(--text-muted);font-weight:600}
+
+/* ==================== TESTIMONIALS ==================== */
+.testimonials-slider{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:30px;transition:all .4s;position:relative}
+.testimonial-card:hover{transform:translateY(-6px);border-color:var(--primary);box-shadow:var(--shadow-glow)}
+.testimonial-stars{color:#f59e0b;margin-bottom:16px;font-size:16px}
+.testimonial-text{color:var(--text-muted);margin-bottom:20px;font-size:15px;line-height:1.8}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:48px;height:48px;border-radius:50%;background:var(--grad-main);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
+.testimonial-name{font-weight:700;font-size:15px}
+.testimonial-role{font-size:12px;color:var(--text-muted)}
+
+/* ==================== NEWSLETTER ==================== */
+.newsletter{padding:90px 0;position:relative;overflow:hidden}
+.newsletter::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(139,92,246,.2),transparent 60%)}
+.newsletter-box{max-width:640px;margin:0 auto;text-align:center;position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:50px 40px;box-shadow:var(--shadow-lg)}
+.newsletter h2{font-size:clamp(26px,3.5vw,38px);font-weight:900;margin-bottom:12px}
+.newsletter p{color:var(--text-muted);margin-bottom:28px}
+.newsletter-form{display:flex;gap:10px;background:var(--bg-glass);padding:8px;border-radius:50px;border:1px solid var(--border)}
+.newsletter-form input{flex:1;background:transparent;border:none;outline:none;padding:12px 22px;color:var(--text);font-size:15px}
+.newsletter-form button{padding:12px 28px;border-radius:50px;background:var(--grad-main);color:#fff;font-weight:700;font-size:15px;transition:all .3s;white-space:nowrap}
+.newsletter-form button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(139,92,246,.4)}
+
+/* ==================== FOOTER ==================== */
+footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:70px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:50px;padding-bottom:50px}
+.footer-logo{font-size:32px;font-weight:900;letter-spacing:4px;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
+.footer-col p{color:var(--text-muted);font-size:14px;line-height:1.9;margin-bottom:20px}
+.footer-col h4{font-size:16px;font-weight:700;margin-bottom:22px;position:relative;padding-bottom:12px}
+.footer-col h4::after{content:'';position:absolute;bottom:0;right:0;width:30px;height:2px;background:var(--grad-main);border-radius:2px}
+body[dir="ltr"] .footer-col h4::after{right:auto;left:0}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:12px}
+.footer-col ul a{font-size:14px;color:var(--text-muted);transition:all .3s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.footer-col ul a:hover{color:var(--primary-light);transform:translateX(-4px)}
+body[dir="ltr"] .footer-col ul a:hover{transform:translateX(4px)}
+.social-links{display:flex;gap:12px;margin-top:20px}
+.social-links a{width:42px;height:42px;border-radius:12px;background:var(--bg-glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s}
+.social-links a:hover{background:var(--grad-main);border-color:transparent;color:#fff;transform:translateY(-4px);box-shadow:var(--shadow-glow)}
+.footer-bottom{border-top:1px solid var(--border);padding:24px 0;text-align:center;font-size:13px;color:var(--text-muted)}
+
+/* ==================== CART DRAWER ==================== */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:2000;opacity:0;visibility:hidden;transition:all .4s}
+.overlay.active{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;left:-480px;width:460px;max-width:92vw;height:100vh;background:var(--bg-secondary);z-index:2001;transition:left .5s;display:flex;flex-direction:column;border-right:1px solid var(--border)}
+body[dir="ltr"] .cart-drawer{left:auto;right:-480px;border-right:none;border-left:1px solid var(--border)}
+body[dir="ltr"] .cart-drawer.open{right:0}
+.cart-drawer.open{left:0}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:24px;border-bottom:1px solid var(--border)}
+.cart-header h3{font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
+.close-btn{width:40px;height:40px;border-radius:50%;background:var(--bg-glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s}
+.close-btn:hover{background:var(--danger);color:#fff;transform:rotate(90deg)}
+.cart-items{flex:1;overflow-y:auto;padding:20px 24px}
+.cart-empty{text-align:center;padding:80px 20px;color:var(--text-muted)}
+.cart-empty .icon{font-size:80px;margin-bottom:20px;opacity:.3}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);animation:fadeSlideUp .4s ease}
+.cart-item img{width:80px;height:100px;object-fit:cover;border-radius:var(--radius-sm)}
+.cart-item-info{flex:1}
+.cart-item-info h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.cart-item-info .size{font-size:12px;color:var(--text-muted);margin-bottom:6px}
+.cart-item-info .price{font-weight:800;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.qty-controls{display:flex;align-items:center;gap:10px}
+.qty-btn{width:30px;height:30px;border-radius:8px;background:var(--bg-glass);border:1px solid var(--border);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.qty-num{font-weight:700;min-width:24px;text-align:center}
+.remove-item{color:var(--danger);font-size:13px;margin-inline-start:auto;transition:all .2s}
+.remove-item:hover{text-decoration:underline}
+.cart-footer{padding:24px;border-top:1px solid var(--border);background:var(--bg-card)}
+.cart-total{display:flex;justify-content:space-between;font-size:18px;font-weight:800;margin-bottom:20px}
+.cart-total .amount{background:var(--grad-main);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:22px}
+.checkout-btn{width:100%;padding:16px;background:var(--grad-main);color:#fff;border-radius:var(--radius-sm);font-weight:700;font-size:16px;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+.checkout-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(139,92,246,.5)}
+
+/* ==================== TOAST ==================== */
+.toast{position:fixed;bottom:30px;left:50%;transform:translate(-50%,150px);background:var(--bg-card);border:1px solid var(--border);border-radius:50px;padding:14px 28px;font-weight:600;font-size:14px;z-index:3000;transition:transform .4s;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);backdrop-filter:blur(10px)}
+.toast.show{transform:translate(-50%,0)}
+.toast.success{border-color:var(--success);color:var(--success)}
+.toast.error{border-color:var(--danger);color:var(--danger)}
+
+/* ==================== MODAL ==================== */
+.modal{position:fixed;inset:0;z-index:2500;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .3s}
+.modal.open{opacity:1;visibility:visible}
+.modal-content{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);max-width:480px;width:100%;padding:40px;box-shadow:var(--shadow-lg);transform:scale(.9);transition:transform .3s;max-height:90vh;overflow-y:auto}
+.modal.open .modal-content{transform:scale(1)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.modal-header h2{font-size:24px;font-weight:900}
+.modal-close{width:36px;height:36px;border-radius:50%;background:var(--bg-glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s}
+.modal-close:hover{background:var(--danger);color:#fff;transform:rotate(90deg)}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:13px 16px;background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;outline:none;transition:border .2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(139,92,246,.15)}
+.form-error{color:var(--danger);font-size:13px;margin-top:6px;display:none}
+.form-link{text-align:center;margin-top:16px;font-size:13px;color:var(--text-muted);cursor:pointer}
+.form-link span{color:var(--primary-light);font-weight:700;cursor:pointer}
+
+/* ==================== ACCOUNT PAGE ==================== */
+.page{display:none;animation:fadeSlideUp .5s ease}
+.page.active{display:block}
+.account-wrap{max-width:900px;margin:0 auto;padding:60px 24px}
+.account-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;margin-bottom:24px}
+.account-card h3{font-size:20px;margin-bottom:20px;font-weight:800}
+.order-item{border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px}
+.order-header{display:flex;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:10px}
+.order-num{font-weight:800}
+.order-status{padding:4px 12px;border-radius:50px;font-size:12px;font-weight:700}
+.order-status.paid{background:rgba(16,185,129,.15);color:var(--success)}
+.order-status.pending{background:rgba(245,158,11,.15);color:var(--warning)}
+
+/* ==================== CHECKOUT ==================== */
+.checkout-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:30px}
+.checkout-summary{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;height:fit-content}
+.summary-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.summary-row.total{border:none;font-weight:800;font-size:18px;padding-top:16px}
+.pay-option{display:flex;align-items:center;gap:12px;padding:14px;border:2px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;cursor:pointer;transition:all .2s}
+.pay-option:hover{border-color:var(--primary)}
+.pay-option.selected{border-color:var(--primary);background:rgba(139,92,246,.08)}
+.pay-option input{accent-color:var(--primary)}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{max-width:500px;margin:0 auto}
+  .products-grid{grid-template-columns:repeat(3,1fr)}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .testimonials-slider{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .flash-sale-content{grid-template-columns:1fr}
+  .checkout-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:78px;right:-100%;width:100%;height:calc(100vh - 78px);background:var(--bg-secondary);flex-direction:column;padding:40px 30px;gap:0;transition:right .4s;border-top:1px solid var(--border);z-index:999;overflow-y:auto}
+  body[dir="ltr"] .nav-links{right:auto;left:-100%}
+  body[dir="ltr"] .nav-links.open{left:0}
+  .nav-links.open{right:0}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:18px 0;border-bottom:1px solid var(--border);font-size:17px}
+  .menu-toggle{display:flex}
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .product-info{padding:14px}
+  .product-info h3{font-size:14px}
+  .price-current{font-size:18px}
+  .section{padding:60px 0}
+  .features-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .newsletter-form{flex-direction:column;border-radius:var(--radius)}
+  .newsletter-form button{border-radius:var(--radius-sm)}
+  .countdown{flex-wrap:wrap}
+  .countdown-item{min-width:70px;padding:12px 14px}
+  .countdown-num{font-size:24px}
+  .floating-card{display:none}
+  .modal-content{padding:28px 20px}
+}
+@media(max-width:480px){
+  .products-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .product-info h3{font-size:13px}
+  .add-cart-btn{font-size:12px;padding:10px}
+  .footer-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-num{font-size:36px}
+  .lang-btn span:nth-child(2){display:none}
+}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--grad-main);border-radius:10px}
+.hidden{display:none!important}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body dir="rtl">
+
+<!-- ============ LOADER ============ -->
+<div class="loader-screen" id="loader">
+  <div class="loader-logo">STYLE</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="header">
+  <div class="container nav">
+    <div class="logo" onclick="showPage('home')">STYLE</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a onclick="showPage('home');scrollToId('hero')" data-i18n="nav_home">الرئيسية</a></li>
+      <li><a onclick="showPage('home');scrollToId('products')" data-i18n="nav_shop">المتجر</a></li>
+      <li><a onclick="showPage('home');scrollToId('testimonials')" data-i18n="nav_about">من نحن</a></li>
+      <li><a onclick="showPage('home');scrollToId('footer')" data-i18n="nav_contact">تواصل</a></li>
+      <li><a onclick="showPage('account')" data-i18n="nav_account">حسابي</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn">
+          <span>🌐</span>
+          <span id="langBtnText">🇪🇬 العربية</span>
+          <span>▾</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Theme">☀️</button>
+      <button class="icon-btn" id="userBtn" onclick="openAuth()" aria-label="Account">👤</button>
+      <button class="icon-btn" id="wishlistBtn" onclick="openWishlist()" aria-label="Wishlist">❤<span class="cart-count" id="wishCount" style="background:var(--accent)">0</span></button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">🛒<span class="cart-count" id="cartCount">0</span></button>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HOME PAGE ============ -->
+<main class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge" data-i18n="hero_badge">مجموعة 2025 الجديدة</div>
+          <h1>
+            <span data-i18n="hero_title_1">أناقتك</span><br>
+            <span class="gradient-text" data-i18n="hero_title_2">تبدأ من هنا</span>
+          </h1>
+          <p data-i18n="hero_desc">اكتشف أحدث صيحات الموضة بجودة استثنائية وأسعار لا تُقاوم.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="scrollToId('products')"><span data-i18n="hero_shop">تسوّق الآن</span> ←</button>
+            <button class="btn btn-outline" onclick="scrollToId('testimonials')" data-i18n="hero_explore">اكتشف المجموعة</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-blob"></div>
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80" alt="Fashion">
+          </div>
+          <div class="floating-card card-1">
+            <div class="fc-icon">🚚</div>
+            <div class="fc-info"><strong data-i18n="fc1_title">توصيل سريع</strong><span data-i18n="fc1_sub">خلال 2-4 أيام</span></div>
+          </div>
+          <div class="floating-card card-2">
+            <div class="fc-icon">🔒</div>
+            <div class="fc-info"><strong data-i18n="fc2_title">دفع آمن</strong><span data-i18n="fc2_sub">حماية 100%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-bar">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item reveal">
+          <div class="feature-icon">🚚</div>
+          <div><h4 data-i18n="feature1_title">شحن سريع</h4><p data-i18n="feature1_sub">توصيل خلال 2-4 أيام</p></div>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">🔄</div>
+          <div><h4 data-i18n="feature2_title">استرجاع مجاني</h4><p data-i18n="feature2_sub">خلال 14 يوم</p></div>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">🔒</div>
+          <div><h4 data-i18n="feature3_title">دفع آمن</h4><p data-i18n="feature3_sub">حماية 100%</p></div>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">💬</div>
+          <div><h4 data-i18n="feature4_title">دعم 24/7</h4><p data-i18n="feature4_sub">خدمة متميزة</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="eyebrow" data-i18n="products_eyebrow">منتجاتنا</span>
+        <h2><span data-i18n="products_title">اختيارات</span> <span class="gradient-text" data-i18n="products_title_2">حصرية</span></h2>
+        <p data-i18n="products_desc">منتجات مختارة بعناية فائقة لتناسب ذوقك</p>
+      </div>
+      <div class="filter-bar reveal">
+        <div class="filter-search">
+          <span class="search-icon">🔍</span>
+          <input type="search" id="search" data-i18n="search_placeholder" placeholder="ابحث عن منتج...">
+        </div>
+        <select id="category">
+          <option value="" data-i18n="filter_all">كل الفئات</option>
+          <option value="رجالي" data-i18n="filter_male">رجالي</option>
+          <option value="نسائي" data-i18n="filter_female">نسائي</option>
+        </select>
+        <select id="sort">
+          <option value="" data-i18n="sort_default">الترتيب</option>
+          <option value="price_asc" data-i18n="sort_price_asc">السعر: الأقل</option>
+          <option value="price_desc" data-i18n="sort_price_desc">السعر: الأعلى</option>
+        </select>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- FLASH SALE -->
+  <section class="flash-sale">
+    <div class="container">
+      <div class="flash-sale-content">
+        <div class="reveal">
+          <span class="eyebrow" data-i18n="flash_eyebrow">عرض محدود</span>
+          <h2><span data-i18n="flash_title">خصم يصل إلى</span> <span class="gradient-text" data-i18n="flash_title_2">50%</span></h2>
+          <p data-i18n="flash_desc">على مجموعة مختارة. العرض ينتهي قريباً!</p>
+          <div class="countdown">
+            <div class="countdown-item"><div class="countdown-num" id="cd-days">00</div><div class="countdown-label" data-i18n="days">يوم</div></div>
+            <div class="countdown-item"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-label" data-i18n="hours">ساعة</div></div>
+            <div class="countdown-item"><div class="countdown-num" id="cd-mins">00</div><div class="countdown-label" data-i18n="minutes">دقيقة</div></div>
+            <div class="countdown-item"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-label" data-i18n="seconds">ثانية</div></div>
+          </div>
+          <button class="btn btn-primary" style="margin-top:24px" onclick="scrollToId('products')" data-i18n="flash_cta">تسوّق العرض</button>
+        </div>
+        <div class="flash-image reveal">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80" alt="Sale">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal"><div class="stat-num" data-counter data-target="50000">0</div><div class="stat-label" data-i18n="stats_customers">عميل سعيد</div></div>
+        <div class="stat-card reveal"><div class="stat-num" data-counter data-target="1200" data-suffix="+">0</div><div class="stat-label" data-i18n="stats_products">منتج مميز</div></div>
+        <div class="stat-card reveal"><div class="stat-num" data-counter data-target="25000">0</div><div class="stat-label" data-i18n="stats_orders">طلب مكتمل</div></div>
+        <div class="stat-card reveal"><div class="stat-num" data-counter data-target="49" data-suffix="★">0</div><div class="stat-label" data-i18n="stats_rating">تقييم العملاء</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="eyebrow" data-i18n="testimonials_eyebrow">آراء العملاء</span>
+        <h2><span data-i18n="testimonials_title">ماذا يقول</span> <span class="gradient-text" data-i18n="testimonials_title_2">عملاؤنا</span></h2>
+      </div>
+      <div class="testimonials-slider">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"أفضل تجربة تسوق مررت بها! جودة الملابس مذهلة والتوصيل سريع جداً."</p>
+          <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><div class="testimonial-name">أحمد علي</div><div class="testimonial-role">عميل دائم</div></div></div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"الأسعار ممتازة والأقمشة عالية الجودة. طلبت عدة قطع وكلها رائعة!"</p>
+          <div class="testimonial-author"><div class="testimonial-avatar" style="background:linear-gradient(135deg,#ec4899,#06b6d4)">S</div><div><div class="testimonial-name">سارة محمد</div><div class="testimonial-role">عميلة</div></div></div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"خدمة عملاء ممتازة وسريعة في الرد. سأطلب مرة أخرى بالتأكيد."</p>
+          <div class="testimonial-author"><div class="testimonial-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">M</div><div><div class="testimonial-name">محمود خالد</div><div class="testimonial-role">عميل</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-box reveal">
+        <h2><span data-i18n="newsletter_title">اشترك في</span> <span class="gradient-text" data-i18n="newsletter_title_2">نشرتنا</span></h2>
+        <p data-i18n="newsletter_desc">كن أول من يعرف عن أحدث المنتجات والعروض الحصرية</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();showToast('✅ '+t('newsletter_btn'),'success');this.reset()">
+          <input type="email" required data-i18n="newsletter_placeholder" placeholder="بريدك الإلكتروني">
+          <button type="submit" data-i18n="newsletter_btn">اشترك</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ ACCOUNT PAGE ============ -->
+<main class="page" id="page-account">
+  <div class="account-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:16px">
+      <h2 style="font-size:32px;font-weight:900" data-i18n="nav_account">حسابي</h2>
+      <button onclick="logout()" class="btn btn-primary" style="background:var(--danger);padding:12px 24px"><span data-i18n="logout">خروج</span></button>
+    </div>
+    <div class="account-card">
+      <h3 data-i18n="nav_account">بياناتي</h3>
+      <div id="profileInfo"></div>
+    </div>
+    <div class="account-card">
+      <h3 data-i18n="my_orders">طلباتي</h3>
+      <div id="ordersList"></div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ CHECKOUT PAGE ============ -->
+<main class="page" id="page-checkout">
+  <div class="container" style="padding:60px 24px">
+    <h2 style="font-size:32px;font-weight:900;margin-bottom:30px" data-i18n="cart_checkout">إتمام الطلب</h2>
+    <div class="checkout-grid">
+      <form class="account-card" id="checkoutForm" onsubmit="submitOrder(event)">
+        <h3 data-i18n="shipping_info">بيانات الشحن</h3>
+        <div class="form-group"><label data-i18n="full_name">الاسم الكامل</label><input name="name" required></div>
+        <div class="form-group"><label data-i18n="phone">رقم الجوال</label><input name="phone" required></div>
+        <div class="form-group"><label data-i18n="city">المدينة</label><input name="city" required></div>
+        <div class="form-group"><label data-i18n="address">العنوان</label><textarea name="address" rows="3" required></textarea></div>
+        <div class="form-group"><label data-i18n="notes">ملاحظات</label><textarea name="notes" rows="2"></textarea></div>
+        <h3 style="margin:25px 0 15px" data-i18n="payment_method">طريقة الدفع</h3>
+        <label class="pay-option selected" onclick="selectPay(this)">
+          <input type="radio" name="pay" value="card" checked>
+          <span>💳 <span data-i18n="pay_card">بطاقة ائتمان (Stripe)</span></span>
+        </label>
+        <label class="pay-option" onclick="selectPay(this)">
+          <input type="radio" name="pay" value="cod">
+          <span>💵 <span data-i18n="pay_cod">الدفع عند الاستلام (+20)</span></span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px" data-i18n="confirm_order">تأكيد الطلب</button>
+        <div class="form-error" id="checkoutErr"></div>
+      </form>
+      <div class="checkout-summary">
+        <h3 style="margin-bottom:20px" data-i18n="order_summary">ملخص الطلب</h3>
+        <div id="summaryList"></div>
+        <div class="summary-row total"><span data-i18n="cart_total">الإجمالي</span><span id="summaryTotal" class="gradient-text">0</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">STYLE</div>
+        <p data-i18n="footer_about">وجهتك الأولى للأزياء العصرية.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_quick">روابط سريعة</h4>
+        <ul>
+          <li><a onclick="showPage('home');scrollToId('hero')" data-i18n="nav_home">الرئيسية</a></li>
+          <li><a onclick="showPage('home');scrollToId('products')" data-i18n="nav_shop">المتجر</a></li>
+          <li><a onclick="showPage('account')" data-i18n="nav_account">حسابي</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_service">خدمة العملاء</h4>
+        <ul>
+          <li><a data-i18n="footer_return">سياسة الاسترجاع</a></li>
+          <li><a data-i18n="footer_shipping">الشحن والتوصيل</a></li>
+          <li><a data-i18n="footer_size">دليل المقاسات</a></li>
+          <li><a data-i18n="footer_faq">الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_contact">تواصل معنا</h4>
+        <ul>
+          <li>📍 القاهرة، مصر</li>
+          <li>📞 0100 000 0000</li>
+          <li>✉️ info@style.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 STYLE. <span data-i18n="footer_rights">جميع الحقوق محفوظة</span>.</div>
+  </div>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>🛒 <span data-i18n="cart_title">سلة التسوق</span></h3>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span data-i18n="cart_total">الإجمالي</span><span id="cartTotal"><span class="amount">0</span></span></div>
+    <button class="checkout-btn" onclick="goCheckout()"><span data-i18n="cart_checkout">إتمام الطلب</span> →</button>
+  </div>
+</aside>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="authTitle" data-i18n="login">تسجيل الدخول</h2>
+      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+    </div>
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group"><label data-i18n="email">البريد الإلكتروني</label><input type="email" name="email" required></div>
+      <div class="form-group"><label data-i18n="password">كلمة المرور</label><input type="password" name="password" required></div>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="login">دخول</button>
+      <div class="form-error" id="loginErr"></div>
+      <div class="form-link"><span data-i18n="no_account">ليس لديك حساب؟</span> <span onclick="switchAuth('register')" data-i18n="create_account">أنشئ حساب</span></div>
+    </form>
+    <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+      <div class="form-group"><label data-i18n="full_name">الاسم الكامل</label><input name="name" required></div>
+      <div class="form-group"><label data-i18n="email">البريد</label><input type="email" name="email" required></div>
+      <div class="form-group"><label data-i18n="phone">الجوال</label><input name="phone"></div>
+      <div class="form-group"><label data-i18n="password">كلمة المرور</label><input type="password" name="password" required minlength="6"></div>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="create_account">إنشاء الحساب</button>
+      <div class="form-error" id="registerErr"></div>
+      <div class="form-link"><span data-i18n="have_account">لديك حساب؟</span> <span onclick="switchAuth('login')" data-i18n="login">دخول</span></div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ WISHLIST MODAL ============ -->
+<div class="modal" id="wishlistModal">
+  <div class="modal-content" style="max-width:600px">
+    <div class="modal-header">
+      <h2>❤ <span data-i18n="wishlist">المفضلة</span></h2>
+      <button class="modal-close" onclick="closeModal('wishlistModal')">✕</button>
+    </div>
+    <div id="wishlistContent"></div>
+  </div>
+</div>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal" id="quickViewModal">
+  <div class="modal-content" style="max-width:700px">
+    <div class="modal-header">
+      <h2 data-i18n="quick_view">نظرة سريعة</h2>
+      <button class="modal-close" onclick="closeModal('quickViewModal')">✕</button>
+    </div>
+    <div id="quickViewContent"></div>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   CONFIG - عدّل هنا لربط الـ Backend
+   ============================================================ */
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : '/api'; // في الإنتاج نفس الدومين
+
+const USE_REAL_BACKEND = false; // اجعلها true بعد تشغيل الـ backend
+
+/* ============================================================
+   TRANSLATIONS (8 لغات)
+   ============================================================ */
+const translations = {
+  ar: { dir:'rtl', flag:'🇪🇬', name:'العربية', nav_home:'الرئيسية', nav_shop:'المتجر', nav_about:'من نحن', nav_contact:'تواصل', nav_account:'حسابي',
+    ticker_1:'🚚 شحن مجاني فوق 500 ج.م', ticker_2:'🎁 خصم 30% على أول طلب', ticker_3:'🔄 استرجاع مجاني 14 يوم', ticker_4:'⭐ 4.9/5 من 10,000+ عميل',
+    hero_badge:'مجموعة 2025 الجديدة', hero_title_1:'أناقتك', hero_title_2:'تبدأ من هنا', hero_desc:'اكتشف أحدث صيحات الموضة بجودة استثنائية.', hero_shop:'تسوّق الآن', hero_explore:'اكتشف المجموعة',
+    fc1_title:'توصيل سريع', fc1_sub:'2-4 أيام', fc2_title:'دفع آمن', fc2_sub:'حماية 100%',
+    feature1_title:'شحن سريع', feature1_sub:'خلال 2-4 أيام', feature2_title:'استرجاع مجاني', feature2_sub:'خلال 14 يوم',
+    feature3_title:'دفع آمن', feature3_sub:'حماية 100%', feature4_title:'دعم 24/7', feature4_sub:'خدمة متميزة',
+    products_eyebrow:'منتجاتنا', products_title:'اختيارات', products_title_2:'حصرية', products_desc:'منتجات مختارة بعناية لتناسب ذوقك',
+    search_placeholder:'ابحث عن منتج...', filter_all:'كل الفئات', filter_male:'رجالي', filter_female:'نسائي',
+    sort_default:'الترتيب', sort_price_asc:'السعر: الأقل', sort_price_desc:'السعر: الأعلى',
+    add_cart:'أضف للسلة', out_of_stock:'نفذ المخزون',
+    flash_eyebrow:'عرض محدود', flash_title:'خصم يصل إلى', flash_title_2:'50%', flash_desc:'على مجموعة مختارة. ينتهي قريباً!', flash_cta:'تسوّق العرض',
+    days:'يوم', hours:'ساعة', minutes:'دقيقة', seconds:'ثانية',
+    stats_customers:'عميل سعيد', stats_products:'منتج', stats_orders:'طلب مكتمل', stats_rating:'تقييم العملاء',
+    testimonials_eyebrow:'آراء العملاء', testimonials_title:'ماذا يقول', testimonials_title_2:'عملاؤنا',
+    newsletter_title:'اشترك في', newsletter_title_2:'نشرتنا', newsletter_desc:'كن أول من يعرف عن العروض', newsletter_placeholder:'بريدك الإلكتروني', newsletter_btn:'اشترك',
+    footer_about:'وجهتك الأولى للأزياء العصرية.', footer_quick:'روابط سريعة', footer_service:'خدمة العملاء', footer_contact:'تواصل',
+    footer_return:'سياسة الاسترجاع', footer_shipping:'الشحن', footer_size:'دليل المقاسات', footer_faq:'الأسئلة الشائعة', footer_rights:'جميع الحقوق محفوظة',
+    cart_title:'سلة التسوق', cart_empty:'السلة فارغة', cart_empty_desc:'ابدأ التسوق الآن!', cart_total:'الإجمالي', cart_checkout:'إتمام الطلب', cart_remove:'حذف',
+    added_to_cart:'تمت الإضافة للسلة', removed_from_cart:'تم الحذف', added_to_wishlist:'تمت الإضافة للمفضلة', removed_from_wishlist:'تم الحذف من المفضلة',
+    login:'دخول', logout:'خروج', email:'البريد الإلكتروني', password:'كلمة المرور', full_name:'الاسم الكامل', phone:'رقم الجوال', city:'المدينة', address:'العنوان', notes:'ملاحظات',
+    no_account:'ليس لديك حساب؟', create_account:'أنشئ حساب', have_account:'لديك حساب؟', welcome:'أهلاً',
+    shipping_info:'بيانات الشحن', payment_method:'طريقة الدفع', pay_card:'بطاقة (Stripe)', pay_cod:'عند الاستلام (+20)', confirm_order:'تأكيد الطلب', order_summary:'ملخص الطلب',
+    my_orders:'طلباتي', no_orders:'لا توجد طلبات', quick_view:'نظرة سريعة', wishlist:'المفضلة', select_size:'اختر المقاس', reviews:'تقييم', in_stock:'متوفر' },
+  en: { dir:'ltr', flag:'🇬🇧', name:'English', nav_home:'Home', nav_shop:'Shop', nav_about:'About', nav_contact:'Contact', nav_account:'Account',
+    ticker_1:'🚚 Free shipping over $100', ticker_2:'🎁 30% off first order', ticker_3:'🔄 14-day free returns', ticker_4:'⭐ 4.9/5 from 10,000+ customers',
+    hero_badge:'New 2025 Collection', hero_title_1:'Your style', hero_title_2:'starts here', hero_desc:'Discover latest fashion with exceptional quality.', hero_shop:'Shop Now', hero_explore:'Explore',
+    fc1_title:'Fast Delivery', fc1_sub:'2-4 days', fc2_title:'Secure Payment', fc2_sub:'100% protected',
+    feature1_title:'Fast Shipping', feature1_sub:'Within 2-4 days', feature2_title:'Free Returns', feature2_sub:'Within 14 days',
+    feature3_title:'Secure Payment', feature3_sub:'100% protected', feature4_title:'24/7 Support', feature4_sub:'Premium service',
+    products_eyebrow:'Our Products', products_title:'Exclusive', products_title_2:'Selections', products_desc:'Handpicked products for your taste',
+    search_placeholder:'Search products...', filter_all:'All', filter_male:'Men', filter_female:'Women',
+    sort_default:'Sort by', sort_price_asc:'Price: Low', sort_price_desc:'Price: High',
+    add_cart:'Add to Cart', out_of_stock:'Out of Stock',
+    flash_eyebrow:'Limited Offer', flash_title:'Up to', flash_title_2:'50% OFF', flash_desc:'On selected items. Ends soon!', flash_cta:'Shop Sale',
+    days:'Days', hours:'Hours', minutes:'Mins', seconds:'Secs',
+    stats_customers:'Happy Customers', stats_products:'Products', stats_orders:'Orders', stats_rating:'Rating',
+    testimonials_eyebrow:'Testimonials', testimonials_title:'What', testimonials_title_2:'customers say',
+    newsletter_title:'Subscribe to', newsletter_title_2:'newsletter', newsletter_desc:'Be the first to know', newsletter_placeholder:'Your email', newsletter_btn:'Subscribe',
+    footer_about:'Your premier destination for modern fashion.', footer_quick:'Quick Links', footer_service:'Customer Service', footer_contact:'Contact',
+    footer_return:'Return Policy', footer_shipping:'Shipping', footer_size:'Size Guide', footer_faq:'FAQ', footer_rights:'All rights reserved',
+    cart_title:'Cart', cart_empty:'Cart is empty', cart_empty_desc:'Start shopping!', cart_total:'Total', cart_checkout:'Checkout', cart_remove:'Remove',
+    added_to_cart:'Added to cart', removed_from_cart:'Removed', added_to_wishlist:'Added to wishlist', removed_from_wishlist:'Removed from wishlist',
+    login:'Login', logout:'Logout', email:'Email', password:'Password', full_name:'Full Name', phone:'Phone', city:'City', address:'Address', notes:'Notes',
+    no_account:"Don't have an account?", create_account:'Create Account', have_account:'Have an account?', welcome:'Welcome',
+    shipping_info:'Shipping Info', payment_method:'Payment Method', pay_card:'Card (Stripe)', pay_cod:'Cash on Delivery (+20)', confirm_order:'Confirm Order', order_summary:'Order Summary',
+    my_orders:'My Orders', no_orders:'No orders yet', quick_view:'Quick View', wishlist:'Wishlist', select_size:'Select Size', reviews:'reviews', in_stock:'In Stock' },
+  fr: { dir:'ltr', flag:'🇫🇷', name:'Français', nav_home:'Accueil', nav_shop:'Boutique', nav_about:'À propos', nav_contact:'Contact', nav_account:'Compte',
+    ticker_1:'🚚 Livraison gratuite dès 100€', ticker_2:'🎁 -30% sur première commande', ticker_3:'🔄 Retours gratuits 14j', ticker_4:'⭐ 4.9/5 de 10 000+ clients',
+    hero_badge:'Nouvelle Collection 2025', hero_title_1:'Votre style', hero_title_2:'commence ici', hero_desc:'Découvrez les dernières tendances.', hero_shop:'Acheter', hero_explore:'Explorer',
+    fc1_title:'Livraison rapide', fc1_sub:'2-4 jours', fc2_title:'Paiement sécurisé', fc2_sub:'100% protégé',
+    feature1_title:'Livraison rapide', feature1_sub:'2-4 jours', feature2_title:'Retours gratuits', feature2_sub:'14 jours',
+    feature3_title:'Paiement sécurisé', feature3_sub:'100% protégé', feature4_title:'Support 24/7', feature4_sub:'Premium',
+    products_eyebrow:'Produits', products_title:'Sélections', products_title_2:'exclusives', products_desc:'Produits pour votre goût',
+    search_placeholder:'Rechercher...', filter_all:'Tous', filter_male:'Homme', filter_female:'Femme',
+    sort_default:'Trier', sort_price_asc:'Prix: croissant', sort_price_desc:'Prix: décroissant',
+    add_cart:'Ajouter', out_of_stock:'Épuisé',
+    flash_eyebrow:'Offre limitée', flash_title:"Jusqu'à", flash_title_2:'-50%', flash_desc:'Sélection. Bientôt fini!', flash_cta:'Profiter',
+    days:'Jours', hours:'Heures', minutes:'Min', seconds:'Sec',
+    stats_customers:'Clients', stats_products:'Produits', stats_orders:'Commandes', stats_rating:'Note',
+    testimonials_eyebrow:'Témoignages', testimonials_title:'Ce que disent', testimonials_title_2:'nos clients',
+    newsletter_title:'Abonnez-vous', newsletter_title_2:'newsletter', newsletter_desc:'Soyez informé', newsletter_placeholder:'Votre email', newsletter_btn:"S'abonner",
+    footer_about:'Votre destination mode moderne.', footer_quick:'Liens', footer_service:'Service', footer_contact:'Contact',
+    footer_return:'Retours', footer_shipping:'Livraison', footer_size:'Tailles', footer_faq:'FAQ', footer_rights:'Tous droits',
+    cart_title:'Panier', cart_empty:'Panier vide', cart_empty_desc:'Commencez!', cart_total:'Total', cart_checkout:'Commander', cart_remove:'Supprimer',
+    added_to_cart:'Ajouté', removed_from_cart:'Retiré', added_to_wishlist:'Ajouté aux favoris', removed_from_wishlist:'Retiré',
+    login:'Connexion', logout:'Déconnexion', email:'Email', password:'Mot de passe', full_name:'Nom', phone:'Téléphone', city:'Ville', address:'Adresse', notes:'Notes',
+    no_account:'Pas de compte?', create_account:'Créer', have_account:'Compte?', welcome:'Bienvenue',
+    shipping_info:'Livraison', payment_method:'Paiement', pay_card:'Carte', pay_cod:'À la livraison', confirm_order:'Confirmer', order_summary:'Résumé',
+    my_orders:'Commandes', no_orders:'Aucune', quick_view:'Aperçu', wishlist:'Favoris', select_size:'Taille', reviews:'avis', in_stock:'Stock' },
+  de: { dir:'ltr', flag:'🇩🇪', name:'Deutsch', nav_home:'Startseite', nav_shop:'Shop', nav_about:'Über', nav_contact:'Kontakt', nav_account:'Konto',
+    ticker_1:'🚚 Kostenlos ab 100€', ticker_2:'🎁 30% erste Bestellung', ticker_3:'🔄 14 Tage Rückgabe', ticker_4:'⭐ 4.9/5 von 10.000+',
+    hero_badge:'Neue Kollektion 2025', hero_title_1:'Dein Stil', hero_title_2:'beginnt hier', hero_desc:'Entdecke neueste Trends.', hero_shop:'Kaufen', hero_explore:'Entdecken',
+    fc1_title:'Schnell', fc1_sub:'2-4 Tage', fc2_title:'Sicher', fc2_sub:'100%',
+    feature1_title:'Versand', feature1_sub:'2-4 Tage', feature2_title:'Rücksendung', feature2_sub:'14 Tage',
+    feature3_title:'Zahlung', feature3_sub:'100%', feature4_title:'Support 24/7', feature4_sub:'Premium',
+    products_eyebrow:'Produkte', products_title:'Exklusive', products_title_2:'Auswahl', products_desc:'Für deinen Geschmack',
+    search_placeholder:'Suchen...', filter_all:'Alle', filter_male:'Herren', filter_female:'Damen',
+    sort_default:'Sortieren', sort_price_asc:'Preis auf', sort_price_desc:'Preis ab',
+    add_cart:'Hinzufügen', out_of_stock:'Ausverkauft',
+    flash_eyebrow:'Angebot', flash_title:'Bis zu', flash_title_2:'50%', flash_desc:'Auswahl. Bald zu Ende!', flash_cta:'Shoppen',
+    days:'Tage', hours:'Std', minutes:'Min', seconds:'Sek',
+    stats_customers:'Kunden', stats_products:'Produkte', stats_orders:'Bestellungen', stats_rating:'Bewertung',
+    testimonials_eyebrow:'Bewertungen', testimonials_title:'Was', testimonials_title_2:'Kunden sagen',
+    newsletter_title:'Abonniere', newsletter_title_2:'Newsletter', newsletter_desc:'Bleib informiert', newsletter_placeholder:'E-Mail', newsletter_btn:'Abonnieren',
+    footer_about:'Deine Adresse für Mode.', footer_quick:'Links', footer_service:'Service', footer_contact:'Kontakt',
+    footer_return:'Rückgabe', footer_shipping:'Versand', footer_size:'Größen', footer_faq:'FAQ', footer_rights:'Rechte',
+    cart_title:'Warenkorb', cart_empty:'Leer', cart_empty_desc:'Einkaufen!', cart_total:'Gesamt', cart_checkout:'Kasse', cart_remove:'Entfernen',
+    added_to_cart:'Hinzugefügt', removed_from_cart:'Entfernt', added_to_wishlist:'Wunschliste +', removed_from_wishlist:'Wunschliste -',
+    login:'Anmelden', logout:'Abmelden', email:'E-Mail', password:'Passwort', full_name:'Name', phone:'Telefon', city:'Stadt', address:'Adresse', notes:'Notizen',
+    no_account:'Kein Konto?', create_account:'Erstellen', have_account:'Konto?', welcome:'Willkommen',
+    shipping_info:'Versand', payment_method:'Zahlung', pay_card:'Karte', pay_cod:'Nachnahme', confirm_order:'Bestätigen', order_summary:'Übersicht',
+    my_orders:'Bestellungen', no_orders:'Keine', quick_view:'Ansicht', wishlist:'Wunschliste', select_size:'Größe', reviews:'Bewertungen', in_stock:'Verfügbar' },
+  es: { dir:'ltr', flag:'🇪🇸', name:'Español', nav_home:'Inicio', nav_shop:'Tienda', nav_about:'Nosotros', nav_contact:'Contacto', nav_account:'Cuenta',
+    ticker_1:'🚚 Envío gratis +100€', ticker_2:'🎁 30% primer pedido', ticker_3:'🔄 14 días devolución', ticker_4:'⭐ 4.9/5 de 10,000+',
+    hero_badge:'Nueva Colección 2025', hero_title_1:'Tu estilo', hero_title_2:'empieza aquí', hero_desc:'Descubre últimas tendencias.', hero_shop:'Comprar', hero_explore:'Explorar',
+    fc1_title:'Envío rápido', fc1_sub:'2-4 días', fc2_title:'Pago seguro', fc2_sub:'100%',
+    feature1_title:'Envío', feature1_sub:'2-4 días', feature2_title:'Devoluciones', feature2_sub:'14 días',
+    feature3_title:'Pago', feature3_sub:'100%', feature4_title:'Soporte 24/7', feature4_sub:'Premium',
+    products_eyebrow:'Productos', products_title:'Selecciones', products_title_2:'exclusivas', products_desc:'Para tu gusto',
+    search_placeholder:'Buscar...', filter_all:'Todas', filter_male:'Hombre', filter_female:'Mujer',
+    sort_default:'Ordenar', sort_price_asc:'Precio menor', sort_price_desc:'Precio mayor',
+    add_cart:'Añadir', out_of_stock:'Agotado',
+    flash_eyebrow:'Oferta', flash_title:'Hasta', flash_title_2:'50%', flash_desc:'Selección. ¡Termina pronto!', flash_cta:'Comprar',
+    days:'Días', hours:'Horas', minutes:'Min', seconds:'Seg',
+    stats_customers:'Clientes', stats_products:'Productos', stats_orders:'Pedidos', stats_rating:'Valoración',
+    testimonials_eyebrow:'Opiniones', testimonials_title:'Lo que dicen', testimonials_title_2:'clientes',
+    newsletter_title:'Suscríbete', newsletter_title_2:'newsletter', newsletter_desc:'Sé el primero', newsletter_placeholder:'Tu email', newsletter_btn:'Suscribirse',
+    footer_about:'Tu destino de moda.', footer_quick:'Enlaces', footer_service:'Servicio', footer_contact:'Contacto',
+    footer_return:'Devoluciones', footer_shipping:'Envío', footer_size:'Tallas', footer_faq:'FAQ', footer_rights:'Derechos',
+    cart_title:'Carrito', cart_empty:'Vacío', cart_empty_desc:'¡Compra!', cart_total:'Total', cart_checkout:'Pagar', cart_remove:'Eliminar',
+    added_to_cart:'Añadido', removed_from_cart:'Eliminado', added_to_wishlist:'Favoritos +', removed_from_wishlist:'Favoritos -',
+    login:'Entrar', logout:'Salir', email:'Email', password:'Contraseña', full_name:'Nombre', phone:'Teléfono', city:'Ciudad', address:'Dirección', notes:'Notas',
+    no_account:'¿Sin cuenta?', create_account:'Crear', have_account:'¿Cuenta?', welcome:'Bienvenido',
+    shipping_info:'Envío', payment_method:'Pago', pay_card:'Tarjeta', pay_cod:'Contra reembolso', confirm_order:'Confirmar', order_summary:'Resumen',
+    my_orders:'Pedidos', no_orders:'Ninguno', quick_view:'Vista', wishlist:'Favoritos', select_size:'Talla', reviews:'opiniones', in_stock:'Disponible' },
+  tr: { dir:'ltr', flag:'🇹🇷', name:'Türkçe', nav_home:'Ana', nav_shop:'Mağaza', nav_about:'Hakkımızda', nav_contact:'İletişim', nav_account:'Hesap',
+    ticker_1:'🚚 100₺ üzeri kargo', ticker_2:'🎁 İlk siparişe %30', ticker_3:'🔄 14 gün iade', ticker_4:'⭐ 10.000+ 4.9/5',
+    hero_badge:'Yeni 2025 Koleksiyon', hero_title_1:'Tarzın', hero_title_2:'burada başlar', hero_desc:'En son trendler.', hero_shop:'Satın Al', hero_explore:'Keşfet',
+    fc1_title:'Hızlı', fc1_sub:'2-4 gün', fc2_title:'Güvenli', fc2_sub:'100%',
+    feature1_title:'Kargo', feature1_sub:'2-4 gün', feature2_title:'İade', feature2_sub:'14 gün',
+    feature3_title:'Ödeme', feature3_sub:'100%', feature4_title:'Destek 24/7', feature4_sub:'Premium',
+    products_eyebrow:'Ürünler', products_title:'Özel', products_title_2:'Seçimler', products_desc:'Zevkinize göre',
+    search_placeholder:'Ara...', filter_all:'Tümü', filter_male:'Erkek', filter_female:'Kadın',
+    sort_default:'Sırala', sort_price_asc:'Fiyat: Artan', sort_price_desc:'Fiyat: Azalan',
+    add_cart:'Ekle', out_of_stock:'Tükendi',
+    flash_eyebrow:'Sınırlı', flash_title:'%', flash_title_2:'50 İNDİRİM', flash_desc:'Seçili. Yakında!', flash_cta:'Alışveriş',
+    days:'Gün', hours:'Saat', minutes:'Dak', seconds:'San',
+    stats_customers:'Mutlu', stats_products:'Ürün', stats_orders:'Sipariş', stats_rating:'Puan',
+    testimonials_eyebrow:'Yorumlar', testimonials_title:'Müşteriler', testimonials_title_2:'ne diyor',
+    newsletter_title:'Abone ol', newsletter_title_2:'bülten', newsletter_desc:'İlk bilen', newsletter_placeholder:'E-posta', newsletter_btn:'Abone',
+    footer_about:'Modern moda adresi.', footer_quick:'Linkler', footer_service:'Servis', footer_contact:'İletişim',
+    footer_return:'İade', footer_shipping:'Kargo', footer_size:'Bedenler', footer_faq:'SSS', footer_rights:'Haklar',
+    cart_title:'Sepet', cart_empty:'Boş', cart_empty_desc:'Başla!', cart_total:'Toplam', cart_checkout:'Ödeme', cart_remove:'Kaldır',
+    added_to_cart:'Eklendi', removed_from_cart:'Kaldırıldı', added_to_wishlist:'İstek +', removed_from_wishlist:'İstek -',
+    login:'Giriş', logout:'Çıkış', email:'E-posta', password:'Şifre', full_name:'Ad', phone:'Telefon', city:'Şehir', address:'Adres', notes:'Notlar',
+    no_account:'Hesap yok?', create_account:'Oluştur', have_account:'Hesap?', welcome:'Merhaba',
+    shipping_info:'Kargo', payment_method:'Ödeme', pay_card:'Kart', pay_cod:'Kapıda', confirm_order:'Onayla', order_summary:'Özet',
+    my_orders:'Siparişler', no_orders:'Yok', quick_view:'Bakış', wishlist:'İstek', select_size:'Beden', reviews:'yorum', in_stock:'Stokta' },
+  ru: { dir:'ltr', flag:'🇷🇺', name:'Русский', nav_home:'Главная', nav_shop:'Магазин', nav_about:'О нас', nav_contact:'Контакты', nav_account:'Аккаунт',
+    ticker_1:'🚚 Бесплатно от 100€', ticker_2:'🎁 -30% на первый заказ', ticker_3:'🔄 14 дней возврат', ticker_4:'⭐ 4.9/5 от 10,000+',
+    hero_badge:'Новая коллекция 2025', hero_title_1:'Твой стиль', hero_title_2:'начинается здесь', hero_desc:'Последние тренды.', hero_shop:'Купить', hero_explore:'Смотреть',
+    fc1_title:'Быстро', fc1_sub:'2-4 дня', fc2_title:'Безопасно', fc2_sub:'100%',
+    feature1_title:'Доставка', feature1_sub:'2-4 дня', feature2_title:'Возврат', feature2_sub:'14 дней',
+    feature3_title:'Оплата', feature3_sub:'100%', feature4_title:'Поддержка', feature4_sub:'24/7',
+    products_eyebrow:'Продукты', products_title:'Эксклюзивные', products_title_2:'подборки', products_desc:'На ваш вкус',
+    search_placeholder:'Поиск...', filter_all:'Все', filter_male:'Мужское', filter_female:'Женское',
+    sort_default:'Сортировка', sort_price_asc:'Цена ↑', sort_price_desc:'Цена ↓',
+    add_cart:'В корзину', out_of_stock:'Нет',
+    flash_eyebrow:'Акция', flash_title:'До', flash_title_2:'50%', flash_desc:'Скоро закончится!', flash_cta:'Купить',
+    days:'Дней', hours:'Часов', minutes:'Мин', seconds:'Сек',
+    stats_customers:'Клиентов', stats_products:'Товаров', stats_orders:'Заказов', stats_rating:'Рейтинг',
+    testimonials_eyebrow:'Отзывы', testimonials_title:'Что говорят', testimonials_title_2:'клиенты',
+    newsletter_title:'Подпишитесь на', newsletter_title_2:'рассылку', newsletter_desc:'Узнавайте первыми', newsletter_placeholder:'Email', newsletter_btn:'Подписаться',
+    footer_about:'Адрес современной моды.', footer_quick:'Ссылки', footer_service:'Сервис', footer_contact:'Контакты',
+    footer_return:'Возврат', footer_shipping:'Доставка', footer_size:'Размеры', footer_faq:'FAQ', footer_rights:'Права',
+    cart_title:'Корзина', cart_empty:'Пусто', cart_empty_desc:'Начните!', cart_total:'Итого', cart_checkout:'Оформить', cart_remove:'Удалить',
+    added_to_cart:'Добавлено', removed_from_cart:'Удалено', added_to_wishlist:'В избранное', removed_from_wishlist:'Из избранного',
+    login:'Войти', logout:'Выйти', email:'Email', password:'Пароль', full_name:'Имя', phone:'Телефон', city:'Город', address:'Адрес', notes:'Заметки',
+    no_account:'Нет аккаунта?', create_account:'Создать', have_account:'Аккаунт?', welcome:'Привет',
+    shipping_info:'Доставка', payment_method:'Оплата', pay_card:'Карта', pay_cod:'При получении', confirm_order:'Подтвердить', order_summary:'Итого',
+    my_orders:'Заказы', no_orders:'Нет', quick_view:'Просмотр', wishlist:'Избранное', select_size:'Размер', reviews:'отзывов', in_stock:'В наличии' },
+  zh: { dir:'ltr', flag:'🇨🇳', name:'中文', nav_home:'首页', nav_shop:'商店', nav_about:'关于', nav_contact:'联系', nav_account:'账户',
+    ticker_1:'🚚 满¥100免费配送', ticker_2:'🎁 首单7折', ticker_3:'🔄 14天免费退货', ticker_4:'⭐ 10,000+好评 4.9/5',
+    hero_badge:'全新2025系列', hero_title_1:'你的风格', hero_title_2:'从这里开始', hero_desc:'发现最新潮流。', hero_shop:'立即购物', hero_explore:'探索',
+    fc1_title:'快速', fc1_sub:'2-4天', fc2_title:'安全', fc2_sub:'100%',
+    feature1_title:'配送', feature1_sub:'2-4天', feature2_title:'退货', feature2_sub:'14天',
+    feature3_title:'支付', feature3_sub:'100%', feature4_title:'支持', feature4_sub:'24/7',
+    products_eyebrow:'我们的产品', products_title:'独家', products_title_2:'精选', products_desc:'为您精心挑选',
+    search_placeholder:'搜索...', filter_all:'全部', filter_male:'男装', filter_female:'女装',
+    sort_default:'排序', sort_price_asc:'价格低', sort_price_desc:'价格高',
+    add_cart:'加入购物车', out_of_stock:'缺货',
+    flash_eyebrow:'限时', flash_title:'高达', flash_title_2:'5折', flash_desc:'精选商品。即将结束!', flash_cta:'抢购',
+    days:'天', hours:'时', minutes:'分', seconds:'秒',
+    stats_customers:'满意客户', stats_products:'产品', stats_orders:'订单', stats_rating:'评分',
+    testimonials_eyebrow:'评价', testimonials_title:'客户', testimonials_title_2:'怎么说',
+    newsletter_title:'订阅', newsletter_title_2:'新闻', newsletter_desc:'第一时间了解', newsletter_placeholder:'邮箱', newsletter_btn:'订阅',
+    footer_about:'您的现代时尚目的地。', footer_quick:'链接', footer_service:'服务', footer_contact:'联系',
+    footer_return:'退货', footer_shipping:'配送', footer_size:'尺码', footer_faq:'FAQ', footer_rights:'保留所有权利',
+    cart_title:'购物车', cart_empty:'空', cart_empty_desc:'开始购物!', cart_total:'总计', cart_checkout:'结账', cart_remove:'删除',
+    added_to_cart:'已添加', removed_from_cart:'已移除', added_to_wishlist:'已收藏', removed_from_wishlist:'取消收藏',
+    login:'登录', logout:'退出', email:'邮箱', password:'密码', full_name:'姓名', phone:'电话', city:'城市', address:'地址', notes:'备注',
+    no_account:'没有账户?', create_account:'注册', have_account:'有账户?', welcome:'欢迎',
+    shipping_info:'配送', payment_method:'支付', pay_card:'银行卡', pay_cod:'货到付款', confirm_order:'确认', order_summary:'总结',
+    my_orders:'我的订单', no_orders:'无', quick_view:'快速查看', wishlist:'收藏', select_size:'尺码', reviews:'评价', in_stock:'有货' }
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentLang = localStorage.getItem('lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+let currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+let token = localStorage.getItem('token') || null;
+let products = [];
+let currentPage = 'home';
+
+/* ============================================================
+   DEMO PRODUCTS (fallback when backend offline)
+   ============================================================ */
+const DEMO_PRODUCTS = [
+  { id:1, name:'قميص كلاسيك أبيض', category:'رجالي', price:350, old_price:450, stock:50, image:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80', sizes:'S,M,L,XL', description:'قميص قطن 100% مريح وأنيق' },
+  { id:2, name:'فستان سهرة أنيق', category:'نسائي', price:890, old_price:null, stock:30, image:'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80', sizes:'S,M,L', description:'فستان حرير فاخر' },
+  { id:3, name:'جاكيت جينز عصري', category:'رجالي', price:620, old_price:780, stock:40, image:'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80', sizes:'M,L,XL', description:'جاكيت جينز صيفي' },
+  { id:4, name:'بلوزة حرير فاخرة', category:'نسائي', price:480, old_price:null, stock:25, image:'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=600&q=80', sizes:'S,M,L', description:'بلوزة ناعمة' },
+  { id:5, name:'بنطلون قماش رسمي', category:'رجالي', price:420, old_price:520, stock:60, image:'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80', sizes:'30,32,34,36', description:'بنطلون قماش' },
+  { id:6, name:'تنورة بليسيه', category:'نسائي', price:310, old_price:null, stock:35, image:'https://images.unsplash.com/photo-1583496661160-fb5886a13d77?w=600&q=80', sizes:'S,M,L', description:'تنورة أنيقة' },
+  { id:7, name:'تيشيرت قطن بريميوم', category:'رجالي', price:220, old_price:280, stock:80, image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80', sizes:'S,M,L,XL', description:'تيشيرت ناعم' },
+  { id:8, name:'جاكيت بليزر نسائي', category:'نسائي', price:750, old_price:null, stock:20, image:'https://images.unsplash.com/photo-1548624149-f9b1859a43c2?w=600&q=80', sizes:'S,M,L', description:'بليزر أنيق' }
+];
+
+/* ============================================================
+   API
+   ============================================================ */
+async function api(path, opts = {}) {
+  if (!USE_REAL_BACKEND) {
+    // Demo mode - محاكاة
+    if (path.startsWith('/products')) return DEMO_PRODUCTS;
+    throw new Error('Demo mode - backend not connected');
+  }
+  const headers = { 'Content-Type': 'application/json', ...(opts.headers||{}) };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  const res = await fetch(API_BASE + path, { ...opts, headers });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Error');
+  return data;
+}
+
+/* ============================================================
+   I18N
+   ============================================================ */
+function t(key) {
+  return translations[currentLang]?.[key] || translations.en[key] || key;
+}
+
+function setLanguage(lang) {
+  if (!translations[lang]) return;
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  const data = translations[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = data.dir;
+  document.body.dir = data.dir;
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.textContent = val;
+    }
+  });
+  
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.classList.toggle('active', opt.dataset.lang === lang);
+  });
+  
+  document.getElementById('langBtnText').textContent = data.flag + ' ' + data.name;
+  renderTicker();
+  renderCart();
+  renderProducts();
+  updateUserUI();
+}
+
+function initLanguage() {
+  const dd = document.getElementById('langDropdown');
+  dd.innerHTML = Object.entries(translations).map(([code, data]) => `
+    <button class="lang-option ${code === currentLang ? 'active' : ''}" data-lang="${code}" onclick="setLanguage('${code}');document.getElementById('langDropdown').classList.remove('open')">
+      <span class="lang-flag">${data.flag}</span>
+      <span>${data.name}</span>
+    </button>
+  `).join('');
+  setLanguage(currentLang);
+}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+function renderTicker() {
+  const items = [t('ticker_1'), t('ticker_2'), t('ticker_3'), t('ticker_4')];
+  const track = document.getElementById('tickerTrack');
+  track.innerHTML = [...items, ...items].map(i => `<span>${i}</span>`).join('');
+}
+
+/* ============================================================
+   PRODUCTS
+   ============================================================ */
+async function loadProducts() {
+  try {
+    products = await api('/products');
+  } catch {
+    products = DEMO_PRODUCTS;
+  }
+  renderProducts();
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  const q = (document.getElementById('search')?.value || '').toLowerCase();
+  const cat = document.getElementById('category')?.value || '';
+  const sort = document.getElementById('sort')?.value || '';
+  
+  let list = products.filter(p => {
+    if (q && !p.name.toLowerCase().includes(q) && !(p.description||'').toLowerCase().includes(q)) return false;
+    if (cat && p.category !== cat) return false;
+    return true;
+  });
+  
+  if (sort === 'price_asc') list.sort((a,b) => a.price - b.price);
+  else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
+  
+  if (!list.length) {
+    grid.innerHTML = `<p style="text-align:center;grid-column:1/-1;padding:40px;color:var(--text-muted)">${t('cart_empty')}</p>`;
+    return;
+  }
+  
+  grid.innerHTML = list.map((p, idx) => `
+    <div class="product-card" style="animation-delay:${idx * 0.05}s">
+      <div class="product-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="product-badges">
+          ${p.old_price ? `<span class="product-badge sale">-${Math.round((1 - p.price/p.old_price)*100)}%</span>` : ''}
+          ${!p.old_price && p.stock > 0 ? `<span class="product-badge new">NEW</span>` : ''}
+          ${p.stock <= 0 ? `<span class="product-badge hot">OUT</span>` : ''}
+        </div>
+        <div class="product-actions">
+          <button class="pa-btn ${wishlist.includes(p.id)?'active':''}" onclick="toggleWishlist(${p.id})" title="${t('wishlist')}">❤</button>
+          <button class="pa-btn" onclick="quickView(${p.id})" title="${t('quick_view')}">👁</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">${p.category}</div>
+        <h3>${p.name}</h3>
+        <div class="product-rating">
+          <span class="stars">★★★★★</span>
+          <span class="count">(4.9) · 120 ${t('reviews')}</span>
+        </div>
+        <div class="product-price">
+          <span class="price-current">${p.price}</span>
+          ${p.old_price ? `<span class="price-old">${p.old_price}</span>` : ''}
+        </div>
+        <button class="add-cart-btn" onclick="addProduct(${p.id})" ${p.stock<=0?'disabled':''}>
+          ${p.stock<=0 ? t('out_of_stock') : '🛒 ' + t('add_cart')}
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const sizes = (p.sizes || 'M').split(',').map(s => s.trim());
+  const size = prompt(`${t('select_size')}: ${sizes.join(' / ')}`, sizes[0]);
+  if (!size || !sizes.includes(size.trim())) return showToast('Invalid size', 'error');
+  addToCart({ ...p, size: size.trim() });
+}
+
+function quickView(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const sizes = (p.sizes || 'M').split(',').map(s => s.trim());
+  document.getElementById('quickViewContent').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <img src="${p.image}" style="border-radius:16px;width:100%">
+      <div>
+        <div class="product-cat">${p.category}</div>
+        <h3 style="font-size:24px;margin-bottom:12px">${p.name}</h3>
+        <p style="color:var(--text-muted);margin-bottom:16px">${p.description || ''}</p>
+        <div class="product-price"><span class="price-current" style="font-size:28px">${p.price}</span>${p.old_price?`<span class="price-old">${p.old_price}</span>`:''}</div>
+        <div style="margin:16px 0"><label style="font-weight:700;display:block;margin-bottom:8px">${t('select_size')}</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">${sizes.map(s => `<button class="pa-btn" style="width:auto;padding:8px 16px;border-radius:8px" onclick="addToCart({...products.find(x=>x.id===${p.id}),size:'${s}'});closeModal('quickViewModal')">${s}</button>`).join('')}</div>
+        </div>
+      </div>
+    </div>`;
+  openModal('quickViewModal');
+}
+
+/* ============================================================
+   CART
+   ============================================================ */
+function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartUI(); }
+
+function updateCartUI() {
+  const n = cart.reduce((s,i) => s + i.qty, 0);
+  document.querySelectorAll('#cartCount').forEach(el => el.textContent = n);
+  const wn = wishlist.length;
+  document.getElementById('wishCount').textContent = wn;
+}
+
+function addToCart(product) {
+  const ex = cart.find(i => i.id === product.id && i.size === product.size);
+  if (ex) ex.qty++;
+  else cart.push({ id:product.id, name:product.name, price:product.price, image:product.image, size:product.size||'M', qty:1 });
+  saveCart();
+  renderCart();
+  showToast('✅ ' + t('added_to_cart'), 'success');
+}
+
+function removeFromCart(id, size) {
+  cart = cart.filter(i => !(i.id === id && i.size === size));
+  saveCart(); renderCart();
+  showToast(t('removed_from_cart'));
+}
+
+function changeQty(id, size, delta) {
+  const it = cart.find(i => i.id === id && i.size === size);
+  if (!it) return;
+  it.qty += delta;
+  if (it.qty <= 0) return removeFromCart(id, size);
+  saveCart(); renderCart();
+}
+
+function renderCart() {
+  const el = document.getElementById('cartItems');
+  if (!el) return;
+  if (!cart.length) {
+    el.innerHTML = `<div class="cart-empty"><div class="icon">🛒</div><p style="font-weight:700;margin-bottom:6px">${t('cart_empty')}</p><p style="font-size:13px">${t('cart_empty_desc')}</p></div>`;
+    document.getElementById('cartTotal').innerHTML = `<span class="amount">0</span>`;
+    return;
+  }
+  el.innerHTML = cart.map(i => `
+    <div class="cart-item">
+      <img src="${i.image}" alt="">
+      <div class="cart-item-info">
+        <h4>${i.name}</h4>
+        <div class="size">${t('select_size')} ${i.size}</div>
+        <div class="price">${i.price}</div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty(${i.id},'${i.size}',-1)">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i.id},'${i.size}',1)">+</button>
+          <button class="remove-item" onclick="removeFromCart(${i.id},'${i.size}')">${t('cart_remove')}</button>
+        </div>
+      </div>
+    </div>`).join('');
+  const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').innerHTML = `<span class="amount">${total.toLocaleString()}</span>`;
+}
+
+function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('overlay').classList.add('active'); document.body.style.overflow='hidden'; }
+function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow=''; }
+
+/* ============================================================
+   WISHLIST
+   ============================================================ */
+function toggleWishlist(id) {
+  if (wishlist.includes(id)) {
+    wishlist = wishlist.filter(x => x !== id);
+    showToast(t('removed_from_wishlist'));
+  } else {
+    wishlist.push(id);
+    showToast('❤ ' + t('added_to_wishlist'), 'success');
+  }
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  updateCartUI();
+  renderProducts();
+}
+
+function openWishlist() {
+  const el = document.getElementById('wishlistContent');
+  if (!wishlist.length) {
+    el.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-muted)">${t('cart_empty')}</p>`;
+  } else {
+    el.innerHTML = wishlist.map(id => {
+      const p = products.find(x => x.id === id);
+      if (!p) return '';
+      return `<div class="cart-item">
+        <img src="${p.image}" alt="">
+        <div class="cart-item-info">
+          <h4>${p.name}</h4>
+          <div class="price">${p.price}</div>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="addProduct(${p.id})" style="width:auto;padding:0 12px">🛒</button>
+            <button class="remove-item" onclick="toggleWishlist(${p.id});openWishlist()">${t('cart_remove')}</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  openModal('wishlistModal');
+}
+
+/* ============================================================
+   AUTH
+   ============================================================ */
+function openAuth() {
+  if (currentUser) { showPage('account'); return; }
+  openModal('authModal');
+  switchAuth('login');
+}
+
+function switchAuth(type) {
+  document.getElementById('loginForm').classList.toggle('hidden', type !== 'login');
+  document.getElementById('registerForm').classList.toggle('hidden', type !== 'register');
+  document.getElementById('authTitle').textContent = type === 'login' ? t('login') : t('create_account');
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd);
+  const err = document.getElementById('loginErr');
+  err.style.display = 'none';
+  
+  try {
+    if (USE_REAL_BACKEND) {
+      const res = await api('/auth/login', { method:'POST', body: JSON.stringify(data) });
+      token = res.token; currentUser = res.user;
+    } else {
+      // Demo mode
+      if (data.password.length < 6) throw new Error('كلمة المرور 6 أحرف على الأقل');
+      currentUser = { name: data.email.split('@')[0], email: data.email, role: 'customer' };
+      token = 'demo_token_' + Date.now();
+    }
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(currentUser));
+    closeModal('authModal');
+    showToast('✅ ' + t('welcome') + ' ' + currentUser.name, 'success');
+    updateUserUI();
+  } catch (err2) {
+    err.textContent = err2.message;
+    err.style.display = 'block';
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd);
+  const err = document.getElementById('registerErr');
+  err.style.display = 'none';
+  
+  try {
+    if (USE_REAL_BACKEND) {
+      const res = await api('/auth/register', { method:'POST', body: JSON.stringify(data) });
+      token = res.token; currentUser = res.user;
+    } else {
+      currentUser = { name: data.name, email: data.email, phone: data.phone, role: 'customer' };
+      token = 'demo_token_' + Date.now();
+    }
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(currentUser));
+    closeModal('authModal');
+    showToast('🎉 ' + t('welcome') + ' ' + currentUser.name, 'success');
+    updateUserUI();
+  } catch (err2) {
+    err.textContent = err2.message;
+    err.style.display = 'block';
+  }
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  token = null; currentUser = null;
+  showToast(t('logout'));
+  showPage('home');
+  updateUserUI();
+}
+
+function updateUserUI() {
+  const btn = document.getElementById('userBtn');
+  if (currentUser) btn.textContent = '👤';
+  else btn.textContent = '👤';
+  renderAccount();
+}
+
+/* ============================================================
+   ACCOUNT
+   ============================================================ */
+function renderAccount() {
+  const profile = document.getElementById('profileInfo');
+  if (!profile) return;
+  if (!currentUser) {
+    profile.innerHTML = `<p style="color:var(--text-muted)">${t('login')}</p>`;
+    return;
+  }
+  profile.innerHTML = `
+    <p style="margin-bottom:8px"><b>${t('full_name')}:</b> ${currentUser.name||'-'}</p>
+    <p style="margin-bottom:8px"><b>${t('email')}:</b> ${currentUser.email||'-'}</p>
+    <p><b>${t('phone')}:</b> ${currentUser.phone||'-'}</p>`;
+  
+  const orders = JSON.parse(localStorage.getItem('orders_'+currentUser.email) || '[]');
+  const list = document.getElementById('ordersList');
+  if (!orders.length) {
+    list.innerHTML = `<p style="color:var(--text-muted)">${t('no_orders')}</p>`;
+  } else {
+    list.innerHTML = orders.map(o => `
+      <div class="order-item">
+        <div class="order-header">
+          <span class="order-num">${o.number}</span>
+          <span class="order-status ${o.paid?'paid':'pending'}">${o.paid?'✓ Paid':'Pending'}</span>
+        </div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">${new Date(o.date).toLocaleString()}</div>
+        <div style="font-size:14px">${o.items.map(i => `• ${i.name} ×${i.qty} = ${i.price*i.qty}`).join('<br>')}</div>
+        <div style="margin-top:8px;font-weight:800">${t('cart_total')}: ${o.total}</div>
+      </div>`).join('');
+  }
+}
+
+/* ============================================================
+   CHECKOUT
+   ============================================================ */
+function selectPay(el) {
+  document.querySelectorAll('.pay-option').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+}
+
+function renderCheckoutSummary() {
+  const list = document.getElementById('summaryList');
+  if (!list) return;
+  list.innerHTML = cart.map(i => `<div class="summary-row"><span>${i.name} ×${i.qty}</span><span>${i.price*i.qty}</span></div>`).join('');
+  const total = cart.reduce((s,i) => s + i.price*i.qty, 0);
+  document.getElementById('summaryTotal').textContent = total.toLocaleString();
+}
+
+async function submitOrder(e) {
+  e.preventDefault();
+  if (!currentUser) {
+    showToast('سجّل دخول أولاً', 'error');
+    openAuth();
+    return;
+  }
+  if (!cart.length) {
+    showToast(t('cart_empty'), 'error');
+    return;
+  }
+  const data = Object.fromEntries(new FormData(e.target));
+  const err = document.getElementById('checkoutErr');
+  err.style.display = 'none';
+  
+  const order = {
+    number: 'STY-' + Date.now(),
+    date: new Date().toISOString(),
+    items: cart.map(i => ({ name:i.name, qty:i.qty, price:i.price, size:i.size })),
+    total: cart.reduce((s,i) => s + i.price*i.qty, 0) + (data.pay === 'cod' ? 20 : 0),
+    paid: data.pay === 'card',
+    shipping: { name:data.name, phone:data.phone, city:data.city, address:data.address },
+    notes: data.notes,
+    payment: data.pay
+  };
+  
+  try {
+    if (USE_REAL_BACKEND) {
+      const res = await api('/orders', {
+        method:'POST',
+        body: JSON.stringify({
+          items: cart.map(i => ({ id:i.id, qty:i.qty, size:i.size })),
+          shipping: { name:data.name, phone:data.phone, address:data.address, city:data.city },
+          notes: data.notes
+        })
+      });
+      order.number = res.orderNumber;
+      if (data.pay === 'cod') await api('/payment/cod', { method:'POST', body:JSON.stringify({orderId:res.orderId}) });
+    }
+    
+    // Save locally
+    const orders = JSON.parse(localStorage.getItem('orders_'+currentUser.email) || '[]');
+    orders.unshift(order);
+    localStorage.setItem('orders_'+currentUser.email, JSON.stringify(orders));
+    
+    cart = [];
+    saveCart(); renderCart();
+    showToast('✅ Order confirmed!', 'success');
+    setTimeout(() => showPage('account'), 800);
+  } catch (err2) {
+    err.textContent = err2.message;
+    err.style.display = 'block';
+  }
+}
+
+function goCheckout() {
+  if (!cart.length) { showToast(t('cart_empty'), 'error'); return; }
+  if (!currentUser) { closeCart(); openAuth(); return; }
+  closeCart();
+  showPage('checkout');
+}
+
+/* ============================================================
+   PAGES
+   ============================================================ */
+function showPage(page) {
+  currentPage = page;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'checkout') { renderCheckoutSummary(); }
+  if (page === 'account') { renderAccount(); }
+}
+
+function scrollToId(id) {
+  if (currentPage !== 'home') {
+    showPage('home');
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+  } else {
+    document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+}
+
+/* ============================================================
+   MODALS & TOAST
+   ============================================================ */
+function openModal(id) { document.getElementById(id)?.classList.add('open'); }
+function closeModal(id) { document.getElementById(id)?.classList.remove('open'); }
+
+function showToast(msg, type='') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + type;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.className = 'toast', 2800);
+}
+
+/* ============================================================
+   THEME
+   ============================================================ */
+function initTheme() {
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const btn = document.getElementById('themeToggle');
+  btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+  btn.addEventListener('click', () => {
+    const curr = document.documentElement.getAttribute('data-theme');
+    const next = curr === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+function initCursor() {
+  if (window.innerWidth < 1024) return;
+  const dot = document.createElement('div');
+  const ring = document.createElement('div');
+  dot.className = 'cursor-dot';
+  ring.className = 'cursor-ring';
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
+  
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  (function anim() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(anim);
+  })();
+  
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest('a,button,.product-card,.feature-item,.stat-card')) ring.classList.add('hover');
+    else ring.classList.remove('hover');
+  });
+}
+
+function initParticles() {
+  const c = document.createElement('div');
+  c.className = 'particles-bg';
+  document.body.appendChild(c);
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+    p.style.background = Math.random() > 0.5 ? 'var(--primary)' : 'var(--accent)';
+    c.appendChild(p);
+  }
+}
+
+function initScrollReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+function initCounters() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.done) {
+        e.target.dataset.done = '1';
+        const target = +e.target.dataset.target;
+        const suffix = e.target.dataset.suffix || '';
+        const dur = 2000;
+        const start = performance.now();
+        (function step(now) {
+          const progress = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          e.target.textContent = Math.floor(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else e.target.textContent = target + suffix;
+        })(start);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('[data-counter]').forEach(el => obs.observe(el));
+}
+
+function initCountdown() {
+  const target = new Date();
+  target.setDate(target.getDate() + 3);
+  target.setHours(23, 59, 59, 999);
+  (function tick() {
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+    const m = Math.floor(diff / 60000); diff -= m * 60000;
+    const s = Math.floor(diff / 1000);
+    const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = String(v).padStart(2,'0'); };
+    set('cd-days', d); set('cd-hours', h); set('cd-mins', m); set('cd-secs', s);
+    setTimeout(tick, 1000);
+  })();
+}
+
+function initHeaderScroll() {
+  window.addEventListener('scroll', () => {
+    document.getElementById('header')?.classList.toggle('scrolled', window.scrollY > 20);
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initLanguage();
+  initCursor();
+  initParticles();
+  initHeaderScroll();
+  
+  // Init event listeners
+  document.getElementById('cartBtn').addEventListener('click', openCart);
+  document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  document.getElementById('langBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    document.getElementById('langDropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', () => document.getElementById('langDropdown').classList.remove('open'));
+  
+  ['search','category','sort'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', renderProducts);
+    document.getElementById(id)?.addEventListener('change', renderProducts);
+  });
+  
+  document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+  });
+  
+  // Load data
+  loadProducts();
+  renderCart();
+  updateCartUI();
+  updateUserUI();
+  
+  // Delayed animations
+  setTimeout(() => { initScrollReveal(); initCounters(); }, 300);
+  initCountdown();
+  
+  // Hide loader
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1000);
+});
+</script>
+</body>
+</html>
